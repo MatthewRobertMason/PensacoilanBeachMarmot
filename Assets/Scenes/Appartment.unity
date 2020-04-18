@@ -305,7 +305,31 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interactionHeader: Lights
-  interations: []
+  interations:
+  - InteractionDescription: Increase the light to near-blinding levels.
+    Attention: 1
+    Hunger: 0
+    Thirst: 0
+    Stimulation: 3
+    Knowledge: 0
+    Reassurance: -2
+    Peace: -2
+  - InteractionDescription: Dim the lights to emulate romantic Mediterranean candlelight.
+    Attention: 3
+    Hunger: -1
+    Thirst: 0
+    Stimulation: 1
+    Knowledge: 0
+    Reassurance: 1
+    Peace: 2
+  - InteractionDescription: Extinguish the lights to heighten your other senses.
+    Attention: -1
+    Hunger: 0
+    Thirst: 0
+    Stimulation: -3
+    Knowledge: 0
+    Reassurance: -2
+    Peace: 3
   popupPrefab: {fileID: 6013328756468891367, guid: b53687a1a5aadbd4cb68d7f34b846a1f,
     type: 3}
   cursor: {fileID: 2800000, guid: a61663e1a50cdee4095b75b2d495d342, type: 3}
@@ -556,7 +580,31 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interactionHeader: The Music Zone
-  interations: []
+  interations:
+  - InteractionDescription: Teach the plant to play an instrument.
+    Attention: 2
+    Hunger: 0
+    Thirst: 0
+    Stimulation: 2
+    Knowledge: 3
+    Reassurance: 1
+    Peace: -1
+  - InteractionDescription: Cut a demo tape with the plant.
+    Attention: 3
+    Hunger: -1
+    Thirst: -1
+    Stimulation: 3
+    Knowledge: 1
+    Reassurance: 2
+    Peace: -2
+  - InteractionDescription: Throw some jams onto the theremin.
+    Attention: -2
+    Hunger: 0
+    Thirst: 0
+    Stimulation: 3
+    Knowledge: -1
+    Reassurance: -1
+    Peace: -3
   popupPrefab: {fileID: 6013328756468891367, guid: b53687a1a5aadbd4cb68d7f34b846a1f,
     type: 3}
   cursor: {fileID: 2800000, guid: a61663e1a50cdee4095b75b2d495d342, type: 3}
@@ -641,7 +689,31 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interactionHeader: Lets see whats in the fride...
-  interations: []
+  interations:
+  - InteractionDescription: Give it a nice refreshing soda.
+    Attention: 2
+    Hunger: 1
+    Thirst: 2
+    Stimulation: 1
+    Knowledge: 1
+    Reassurance: -1
+    Peace: 0
+  - InteractionDescription: Place an ice cube in the pot.
+    Attention: 3
+    Hunger: -1
+    Thirst: 1
+    Stimulation: -1
+    Knowledge: 0
+    Reassurance: 0
+    Peace: 1
+  - InteractionDescription: Empty a vial of chilled blood into the soil.
+    Attention: 3
+    Hunger: 2
+    Thirst: 1
+    Stimulation: 2
+    Knowledge: 2
+    Reassurance: -2
+    Peace: -2
   popupPrefab: {fileID: 6013328756468891367, guid: b53687a1a5aadbd4cb68d7f34b846a1f,
     type: 3}
   cursor: {fileID: 2800000, guid: a61663e1a50cdee4095b75b2d495d342, type: 3}
@@ -849,3 +921,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PlantName: 
+  Attention: 0
+  Hunger: 0
+  Thirst: 0
+  Stimulation: 0
+  Knowledge: 0
+  Reassurance: 0
+  Peace: 0
