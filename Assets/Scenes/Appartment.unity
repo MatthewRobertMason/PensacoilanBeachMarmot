@@ -543,8 +543,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d318f42dbf9214641a4d6c55b036b84e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interactionHeader: My Reliable Municipal water supply unit.
-  interations: []
+  interactionHeader: My reliable municipal water supply unit.
+  interations:
+  - InteractionDescription: Give some delicious municipal tap water.
+    Attention: 1
+    Hunger: 0
+    Thirst: 3
+    Stimulation: -1
+    Knowledge: 0
+    Reassurance: 1
+    Peace: 0
+  - InteractionDescription: Place the plant next to the tap while you wash your hands,
+      emulating the gentle misting of a forest waterfall.
+    Attention: -2
+    Hunger: 0
+    Thirst: -3
+    Stimulation: 1
+    Knowledge: 0
+    Reassurance: -1
+    Peace: 2
   popupPrefab: {fileID: 6013328756468891367, guid: b53687a1a5aadbd4cb68d7f34b846a1f,
     type: 3}
   cursor: {fileID: 2800000, guid: a61663e1a50cdee4095b75b2d495d342, type: 3}

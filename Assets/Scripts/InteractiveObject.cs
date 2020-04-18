@@ -41,21 +41,25 @@ public class InteractiveObject : MonoBehaviour
 
     private void OnMouseUpAsButton()
     {
-        GameObject popup = Instantiate(popupPrefab, new Vector3(0, 0, 0), Quaternion.identity);
-        popup.GetComponent<Popup>().SetHeader(interactionHeader);
+        GameObject popupObj = Instantiate(popupPrefab, new Vector3(0, 0, 0), Quaternion.identity);
         popupOpen = true;
         Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
+
+        Popup popup = popupObj.GetComponent<Popup>();
+        popup.SetHeader(interactionHeader);
+
+        foreach(ObjectInteraction oi in interations) {
+            popup.AddInteraction(oi);
+        }
     }
 
     void OnMouseOver()
     {
-        if(!popupOpen)
-            Cursor.SetCursor(cursor, Vector2.zero, CursorMode.Auto);
+        if(!popupOpen) Cursor.SetCursor(cursor, Vector2.zero, CursorMode.Auto);
     }
 
     void OnMouseExit()
     {
-        if (!popupOpen)
-            Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
+        if (!popupOpen) Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
     }
 }
