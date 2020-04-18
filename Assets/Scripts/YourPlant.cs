@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class YourPlant : MonoBehaviour
 {
@@ -12,6 +13,10 @@ public class YourPlant : MonoBehaviour
     public int Knowledge;
     public int Reassurance;
     public int Peace;
+
+    public int day = 1;
+    public int pointsToday = 0;
+    public int freeTime = 1;
 
     private static YourPlant the_plant;
     public static YourPlant GetInstancePlant()
@@ -92,7 +97,31 @@ public class YourPlant : MonoBehaviour
         points += Knowledge * interaction.Knowledge;
         points += Reassurance * interaction.Reassurance;
         points += Peace * interaction.Peace;
+        pointsToday += points;
+        UseTime();
+    }
 
+    public int TimeOnDay(int day)
+    {
+        return System.Math.Min((day-1)/2+1, 8);
+    }
+
+    public void ModifyPlant(int points)
+    {
         Debug.Log(points);
+    }
+
+    public void UseTime()
+    {
+        freeTime -= 1;
+        if(freeTime == 0) {
+            day += 1;
+            ModifyPlant(pointsToday);
+            pointsToday = 0;
+            freeTime = TimeOnDay(day);
+        }
+
+        GameObject.Find("DayIndicator").GetComponent<Text>().text = day.ToString();
+        GameObject.Find("TimeIndicator").GetComponent<Text>().text = freeTime.ToString();
     }
 }
