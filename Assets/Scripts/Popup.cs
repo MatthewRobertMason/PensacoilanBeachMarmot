@@ -10,6 +10,7 @@ public class Popup : MonoBehaviour
     public void Remove()
     {
         Object.Destroy(this.gameObject);
+        InteractiveObject.popupOpen = false;
     }
 
     public void SetHeader(string text)
