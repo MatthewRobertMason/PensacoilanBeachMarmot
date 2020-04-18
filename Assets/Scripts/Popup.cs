@@ -26,4 +26,10 @@ public class Popup : MonoBehaviour
         option.GetComponent<IteractiveAction>().SetAction(oi);
         option.transform.SetParent(body.transform);
     }
+
+    public void AddInteractionPadding()
+    {
+        GameObject obj = new GameObject();
+        obj.transform.SetParent(body.transform);
+    }
 }
