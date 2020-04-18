@@ -19,10 +19,13 @@ public struct ObjectInteraction
 
 public class InteractiveObject : MonoBehaviour
 {
-    public string InteractionHeader;
-    public ObjectInteraction[] Interations;
-
-    public GameObject PopupPrefab;
+    public string interactionHeader;
+    public ObjectInteraction[] interations;
+    
+    // Probably static
+    public GameObject popupPrefab;
+    public Texture2D cursor;
+    public static bool popupOpen = false;
 
     // Start is called before the first frame update
     void Start()
@@ -38,7 +41,21 @@ public class InteractiveObject : MonoBehaviour
 
     private void OnMouseUpAsButton()
     {
-        GameObject popup = Instantiate(PopupPrefab, new Vector3(0, 0, 0), Quaternion.identity);
-        popup.GetComponent<Popup>().SetHeader(InteractionHeader);
+        GameObject popup = Instantiate(popupPrefab, new Vector3(0, 0, 0), Quaternion.identity);
+        popup.GetComponent<Popup>().SetHeader(interactionHeader);
+        popupOpen = true;
+        Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
+    }
+
+    void OnMouseOver()
+    {
+        if(!popupOpen)
+            Cursor.SetCursor(cursor, Vector2.zero, CursorMode.Auto);
+    }
+
+    void OnMouseExit()
+    {
+        if (!popupOpen)
+            Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
     }
 }
