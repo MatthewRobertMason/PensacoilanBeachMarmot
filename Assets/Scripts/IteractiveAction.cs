@@ -26,12 +26,12 @@ public class IteractiveAction : MonoBehaviour
         GetComponent<Text>().text = oi.InteractionDescription;
     }
 
-    void OnMouseOver()
+    public void MouseOver()
     {
         Cursor.SetCursor(cursor, Vector2.zero, CursorMode.Auto);
     }
 
-    void OnMouseExit()
+    public void MouseExit()
     {
         Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
     }

@@ -41,15 +41,18 @@ public class InteractiveObject : MonoBehaviour
 
     private void OnMouseUpAsButton()
     {
-        GameObject popupObj = Instantiate(popupPrefab, new Vector3(0, 0, 0), Quaternion.identity);
-        popupOpen = true;
-        Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
+        if (!popupOpen) {
+            GameObject popupObj = Instantiate(popupPrefab, new Vector3(0, 0, 0), Quaternion.identity);
+            popupOpen = true;
+            Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
 
-        Popup popup = popupObj.GetComponent<Popup>();
-        popup.SetHeader(interactionHeader);
+            Popup popup = popupObj.GetComponent<Popup>();
+            popup.SetHeader(interactionHeader);
 
-        foreach(ObjectInteraction oi in interations) {
-            popup.AddInteraction(oi);
+            foreach (ObjectInteraction oi in interations) {
+                popup.AddInteraction(oi);
+            }
+            popup.AddInteractionPadding();
         }
     }
 
