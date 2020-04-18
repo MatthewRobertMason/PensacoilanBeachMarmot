@@ -1,11 +1,9 @@
 fileFormatVersion: 2
-guid: d318f42dbf9214641a4d6c55b036b84e
+guid: a28f4d018d324324aae88341700986ce
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences:
-  - PopupPrefab: {fileID: 6013328756468891367, guid: b53687a1a5aadbd4cb68d7f34b846a1f,
-      type: 3}
+  defaultReferences: []
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
