@@ -8,6 +8,7 @@ public class IteractiveAction : MonoBehaviour
     ObjectInteraction interaction;
     public Texture2D cursor;
     public Color hoverColour;
+    public bool active;
 
     private Color defaultColour;
 
@@ -17,33 +18,39 @@ public class IteractiveAction : MonoBehaviour
         defaultColour = GetComponent<Text>().color;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
     public void SetAction(ObjectInteraction oi)
     {
         interaction = oi;
+        defaultColour = GetComponent<Text>().color;
         GetComponent<Text>().text = oi.InteractionDescription;
+        active = !YourPlant.GetInstancePlant().actionsToday.Contains(oi.InteractionDescription);
+        if (!active) {
+            defaultColour.a = 0.1f;
+            GetComponent<Text>().color = defaultColour;
+        }
     }
 
     public void MouseOver()
     {
-        Cursor.SetCursor(cursor, Vector2.zero, CursorMode.Auto);
-        GetComponent<Text>().color = hoverColour;
+        if (active) {
+            Cursor.SetCursor(cursor, Vector2.zero, CursorMode.Auto);
+            GetComponent<Text>().color = hoverColour;
+        }
     }
 
     public void MouseExit()
     {
-        Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
-        GetComponent<Text>().color = defaultColour;
+        if (active) {
+            Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
+            GetComponent<Text>().color = defaultColour;
+        }
     }
 
     public void Press() {
-        YourPlant.GetInstancePlant().ApplyInteration(interaction);
-        this.GetComponentInParent<Popup>().Remove();
-        Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
+        if (active) {
+            YourPlant.GetInstancePlant().ApplyInteration(interaction);
+            this.GetComponentInParent<Popup>().Remove();
+            Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
+        }
     }
 }
