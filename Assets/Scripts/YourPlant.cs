@@ -133,8 +133,35 @@ public class YourPlant : MonoBehaviour
     }
 
     // Update is called once per frame
+
+    float growDelay = 0;
+
     void Update()
     {
+        if (freeTime == 0) {
+            InteractiveObject.popupOpen = true;
+            if (growDelay <= 0) {
+
+                if (pointsToday >= 2) {
+                    GrowPlant();
+                    pointsToday -= 2;
+                    growDelay = 0.6f;
+                } else if (pointsToday <= -2) {
+                    ShrinkPlant();
+                    pointsToday += 2;
+                    growDelay = 0.6f;
+                } else {
+                    pointsToday = 0;
+                    growDelay = 2f;
+                }
+
+                if (pointsToday == 0) StartDay();
+            } else {
+                growDelay -= Time.deltaTime;
+            }
+        } else {
+            growDelay = 0.6f;
+        }
     }
 
     public void GrowPlant()
@@ -344,32 +371,22 @@ public class YourPlant : MonoBehaviour
         return System.Math.Min(day, 8);
     }
 
-    public void ModifyPlant(int points)
-    {
-        if(points > 0) {
-            for(int ii = 0; ii < points / 2; ii++) {
-                GrowPlant();
-            }
-        } else {
-            for (int ii = 0; ii < -points / 2; ii++) {
-                ShrinkPlant();
-            }
-        }
-    }
-
     public void UseTime()
     {
-        freeTime -= 1;
-        if(freeTime == 0) {
-            day += 1;
-            ModifyPlant(pointsToday);
-            pointsToday = 0;
-            freeTime = TimeOnDay(day);
-            actionsToday.Clear();
-            var splash = Instantiate(SplashPrefab, new Vector3(0, 0, 0), Quaternion.identity);
-            splash.GetComponent<Splash>().SetDay(day);
-        }
-        
+        freeTime -= 1;        
+        GameObject.Find("DayIndicator").GetComponent<Text>().text = day.ToString();
+        GameObject.Find("TimeIndicator").GetComponent<Text>().text = freeTime.ToString();
+    }
+
+    public void StartDay()
+    {
+        day += 1;
+        freeTime = TimeOnDay(day);
+        actionsToday.Clear();
+        var splash = Instantiate(SplashPrefab, new Vector3(0, 0, 0), Quaternion.identity);
+        splash.GetComponent<Splash>().SetDay(day);
+        InteractiveObject.popupOpen = false;
+        pointsToday = 0;
         GameObject.Find("DayIndicator").GetComponent<Text>().text = day.ToString();
         GameObject.Find("TimeIndicator").GetComponent<Text>().text = freeTime.ToString();
     }
