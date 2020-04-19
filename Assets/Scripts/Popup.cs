@@ -8,6 +8,9 @@ public class Popup : MonoBehaviour
     public GameObject Header;
     public GameObject body;
     public GameObject optionPrefab;
+    public GameObject exitText;
+    public Color color;
+    public Font font;
 
     public void Remove()
     {
@@ -31,5 +34,21 @@ public class Popup : MonoBehaviour
     {
         GameObject obj = new GameObject();
         obj.transform.SetParent(body.transform);
+    }
+
+    public void SetExitText(string text)
+    {
+        exitText.GetComponent<Text>().text = text;
+    }
+
+    public void SetBody(string body)
+    {
+        var textObject = new GameObject();
+        var text = textObject.AddComponent<Text>();
+        text.text = body;
+        text.font = font;
+        text.color = color;
+        text.fontSize = 20;
+        textObject.transform.SetParent(this.body.transform);
     }
 }

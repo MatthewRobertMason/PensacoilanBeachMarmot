@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8833612711142379054}
   - component: {fileID: 3218606602768398012}
   m_Layer: 0
-  m_Name: Text
+  m_Name: ExitText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -407,6 +407,9 @@ MonoBehaviour:
   body: {fileID: 8303099172115103261}
   optionPrefab: {fileID: 568256526484654894, guid: cb799fafaa4940343b1c7d43dde5bb42,
     type: 3}
+  exitText: {fileID: 3615556810355730601}
+  color: {r: 0.122641504, g: 0.122641504, b: 0.122641504, a: 1}
+  font: {fileID: 12800000, guid: 1dcdc7e9e5f48ef48b9841db6d89c117, type: 3}
 --- !u!1 &8303099172115103261
 GameObject:
   m_ObjectHideFlags: 0

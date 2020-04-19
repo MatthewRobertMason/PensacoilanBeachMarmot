@@ -61,6 +61,7 @@ public class YourPlant : MonoBehaviour
     }
 
     public GameObject SplashPrefab;
+    public GameObject firstLetter;
 
     public static string NewName()
     {
@@ -127,6 +128,8 @@ public class YourPlant : MonoBehaviour
         Knowledge = Random.Range(-3, 4);
         Reassurance = Random.Range(-3, 4);
         Peace = Random.Range(-3, 4);
+
+        firstLetter.GetComponent<Letter>().letterText = GenerateStartingLetter();
     }
 
     // Update is called once per frame
@@ -326,5 +329,115 @@ public class YourPlant : MonoBehaviour
         GameObject.Find("TimeIndicator").GetComponent<Text>().text = freeTime.ToString();
     }
 
+    public string hintAttention()
+    {
+        if (Attention > 0) return "Your plant craves attention, and will require it constantly. Remember - never turn your back on a plant!";
+        else return "Your plant likes to be left alone. Don’t smother it! Plants, like teenagers, need some time to figure out who they are- and who they’re going to be.";
+    }
 
+    public string hintHunger()
+    {
+        if (Hunger > 0) return "Food, food, and more food! Your plant can eat anything. Just tuck it into the soil and let the plant do the rest!";
+        else return "Do NOT try to give your plant food. It causes tremendous problems.";
+    }
+
+    public string hintThirst()
+    {
+        if (Thirst > 0) return "All plants need water, but yours needs more than most!";
+        else return "Your plant’s natural habitat is the desert, and as such, it does its best work when there’s no water in sight.";
+    }
+
+    public string hintStimulation()
+    {
+        if (Stimulation > 0) return "This is a plant that needs an intense environment. Don't hold anything back.";
+        else return "Your plant needs as little external stimulation as possible. Maybe get one of those sensory deprivation saltwater tanks?";
+    }
+
+    public string hintKnowledge()
+    {
+        if (Knowledge > 0) return "The more you know, the more you grow! Never has this been more true than with your new plant.";
+        return "No secrets: your plant is not the brightest banana in the bunch, and we suspect it wants to be dumber.";
+    }
+
+    public string hintReassurance()
+    {
+        if (Reassurance > 0) return "Like anyone else, your plant just wants to know that it can love and be loved in return. Gestures of compassion are welcome.";
+        return "Your plant likes to be jittery and freaked out. Try playing an ominous tune, or smiling at it in a weird way.";
+    }
+
+    public string hintPeace()
+    {
+        if (Peace > 0) return "A peaceful environment for your plant is paramount, making this a bad choice for any rock stars on tour, or extravagant house parties.";
+        return "This plant likes it rowdy and loud. Consider starting a rock band, or a land war in Asia.";
+    }
+
+    public List<string> getHintsAt(int number)
+    {
+        var hints = new List<string>();
+        if (Attention == number || Attention == -number) hints.Add(hintAttention());
+        if (Hunger == number || Hunger == -number) hints.Add(hintHunger());
+        if (Thirst == number || Thirst == -number) hints.Add(hintThirst());
+        if (Stimulation == number || Stimulation == -number) hints.Add(hintStimulation());
+        if (Knowledge == number || Knowledge == -number) hints.Add(hintKnowledge());
+        if (Reassurance == number || Reassurance == -number) hints.Add(hintReassurance());
+        if (Peace == number || Peace == -number) hints.Add(hintPeace());
+        return hints;
+    }
+
+    public List<string> getHints(int target)
+    {
+        var hints = getHintsAt(3);
+
+        if (hints.Count < target) {
+            var fallback_hints = getHintsAt(2);
+            while (hints.Count < target) {
+                var index = Random.Range(0, fallback_hints.Count);
+                hints.Add(fallback_hints[index]);
+                fallback_hints.RemoveAt(index);
+            }
+        }
+
+        if (hints.Count < target) {
+            var fallback_hints = getHintsAt(1);
+            while (hints.Count < target) {
+                var index = Random.Range(0, fallback_hints.Count);
+                hints.Add(fallback_hints[index]);
+                fallback_hints.RemoveAt(index);
+            }
+        }
+
+        if(hints.Count > target) {
+            var index = Random.Range(0, hints.Count);
+            hints.RemoveAt(index);
+        }
+
+        return hints;
+    }
+
+    public string GenerateStartingLetter()
+    {
+        var hints = getHints(3);
+
+        int index = Random.Range(0, 1);
+        switch(index) {
+            default:
+            case 0: {
+
+                string hintString = "PS here is a clipping from the package to help you get started:\n";
+                foreach(var hint in hints) {
+                    hintString += "- " + hint + "\n";
+                }
+
+                return string.Format(@"
+Hello Dear!
+
+I thought you might be lonely in the big city so I sent you a potted plant.
+Its a {0}! Thats my favorite kind.
+
+Love Mom <3
+
+{1}", this.PlantName, hintString);
+            }
+        } 
+    }
 }
