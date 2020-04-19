@@ -461,15 +461,21 @@ public class YourPlant : MonoBehaviour
                     hintString += "- " + hint + "\n";
                 }
 
+                string name = this.PlantName;
+                if (!name.StartsWith("The")) {
+                    if(name.StartsWith("A") || name.StartsWith("E") || name.StartsWith("I") || name.StartsWith("O") || name.StartsWith("Y")) name = "an " + name;
+                    else name = "a " + name;
+                }
+
                 return string.Format(@"
 Hello Dear!
 
 I thought you might be lonely in the big city so I sent you a potted plant.
-Its a {0}! Thats my favorite kind.
+Its {0}! Thats my favorite kind.
 
 Love Mom <3
 
-{1}", this.PlantName, hintString);
+{1}", name, hintString);
             }
         } 
     }
