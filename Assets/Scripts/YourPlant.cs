@@ -126,7 +126,7 @@ public class YourPlant : MonoBehaviour
 
     public void GrowPlant()
     {
-        bool done = false;
+        bool done = true;
 
         int xx = plantPot.x;
         int yy = plantPot.y;
