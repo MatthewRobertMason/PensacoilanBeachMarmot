@@ -33,7 +33,7 @@ public class Letter : MonoBehaviour
 
             Popup popup = popupObj.GetComponent<Popup>();
             popup.SetHeader("");
-            popup.SetExitText("Okay");
+            popup.SetExitText("Thanks");
             popup.SetBody(letterText);
         }
     }

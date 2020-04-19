@@ -390,7 +390,7 @@ public class YourPlant : MonoBehaviour
 
         if (hints.Count < target) {
             var fallback_hints = getHintsAt(2);
-            while (hints.Count < target) {
+            while (fallback_hints.Count > 0 && hints.Count < target) {
                 var index = Random.Range(0, fallback_hints.Count);
                 hints.Add(fallback_hints[index]);
                 fallback_hints.RemoveAt(index);
