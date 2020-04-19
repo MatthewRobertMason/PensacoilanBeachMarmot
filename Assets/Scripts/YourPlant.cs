@@ -48,6 +48,8 @@ public class YourPlant : MonoBehaviour
         return the_plant;
     }
 
+    public GameObject SplashPrefab;
+
     public static string NewName()
     {
         var prefix = new string[] {"The Greater", "The Lesser", "Mr.", "Mrs.", "The Regal", "The Opaque",
@@ -171,6 +173,8 @@ public class YourPlant : MonoBehaviour
             pointsToday = 0;
             freeTime = TimeOnDay(day);
             actionsToday.Clear();
+            var splash = Instantiate(SplashPrefab, new Vector3(0, 0, 0), Quaternion.identity);
+            splash.GetComponent<Splash>().SetDay(day);
         }
 
         GameObject.Find("DayIndicator").GetComponent<Text>().text = day.ToString();
