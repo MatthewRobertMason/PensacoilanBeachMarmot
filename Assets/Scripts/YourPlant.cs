@@ -135,11 +135,11 @@ public class YourPlant : MonoBehaviour
         
         while (!done)
         {
-            bool[5] moveableDirections = { false, false, false, false, false };
+            bool[] moveableDirections = { false, false, false, false, false };
             PlantTiles pt = plantGrid[xx, yy].plantTile;
 
             visitedPlaces.Add(plantGrid[xx, yy]);
-            if ((pt.pointsUp) || FreeSpace(xx, y + 1))
+            if ((pt.pointsUp) || FreeSpace(xx, yy + 1))
                 moveableDirections[0] = true;
         }
     }
