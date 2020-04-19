@@ -15,6 +15,9 @@ public class YourPlant : MonoBehaviour
         public int y;
 
         public PlantTiles plantTile = null;
+        public bool foliage = false;
+
+        public PlantPart parent = null;
     }
 
     public int plantGridSizeX = 17;
@@ -120,12 +123,32 @@ public class YourPlant : MonoBehaviour
 
     public void GrowPlant()
     {
+        bool done = false;
 
+        int xx = plantPot.x;
+        int yy = plantPot.y;
+
+        HashSet<PlantPart> visitedPlaces = new HashSet<PlantPart>();
+        
+        while (!done)
+        {
+            bool[5] moveableDirections = { false, false, false, false, false };
+            PlantTiles pt = plantGrid[xx, yy].plantTile;
+
+            visitedPlaces.Add(plantGrid[xx, yy]);
+            if ((pt.pointsUp) || FreeSpace(xx, y + 1))
+                moveableDirections[0] = true;
+        }
     }
-
+    
     public void ShrinkPlant()
     {
 
+    }
+
+    private bool FreeSpace(int x, int y)
+    {
+        return plantGrid[x, y] == null;
     }
 
     public void ApplyInteration(ObjectInteraction interaction)
