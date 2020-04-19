@@ -192,7 +192,7 @@ public class YourPlant : MonoBehaviour
 
         if (rand >= potentialGrowths.Count)
         {
-            rand -= potentialFoliage.Count;
+            rand -= potentialGrowths.Count;
             newPart = potentialFoliage[rand];
         }
         else
@@ -210,15 +210,17 @@ public class YourPlant : MonoBehaviour
             newPart.parent.pointsLeft = true;
 
         UpdateTile(newPart);
-        plantBranchTileMap.SetTile(new Vector3Int(newPart.x, newPart.y, 0), newPart.plantTile.tile);
-        if (newPart.foliage)
+        if (!newPart.foliage)
+            plantBranchTileMap.SetTile(new Vector3Int(newPart.x, newPart.y, 0), newPart.plantTile.tile);
+        else
             plantFoliageTileMap.SetTile(new Vector3Int(newPart.x, newPart.y, 0), newPart.foliageTile.tile);
 
         if (!newPart.parent.plantPot)
         {
             UpdateTile(newPart.parent);
-            plantBranchTileMap.SetTile(new Vector3Int(newPart.parent.x, newPart.parent.y, 0), newPart.parent.plantTile.tile);
-            if (newPart.parent.foliage)
+            if (!newPart.parent.foliage)
+                plantBranchTileMap.SetTile(new Vector3Int(newPart.parent.x, newPart.parent.y, 0), newPart.parent.plantTile.tile);
+            else
                 plantFoliageTileMap.SetTile(new Vector3Int(newPart.parent.x, newPart.parent.y, 0), newPart.parent.foliageTile.tile);
         }
         
@@ -242,21 +244,26 @@ public class YourPlant : MonoBehaviour
                 && !p.isPlantPot
                 && !p.isFoliage
             ).ToList();
+
+            if (potentialBranchTiles.Count > 0)
+            {
+                int rand = Random.Range(0, potentialBranchTiles.Count);
+                part.plantTile = potentialBranchTiles[rand];
+            }
         }
 
-        if ((part.foliageTile == null) && (part.foliage == false))
+        if ((part.foliageTile == null) && (part.foliage))
         {
             potentialFoliageTiles = plantTileCollection.plantTiles.Where(p =>
                 p.isFoliage == part.foliage
             ).ToList();
-        }
 
-        if (potentialBranchTiles.Count > 0)
-        {
-            int rand = Random.Range(0, potentialBranchTiles.Count);
-            part.plantTile = potentialBranchTiles[rand];
+            if (potentialFoliageTiles.Count > 0)
+            {
+                int rand = Random.Range(0, potentialFoliageTiles.Count);
+                part.foliageTile = potentialFoliageTiles[rand];
+            }
         }
-
     }
 
     public void ShrinkPlant()
