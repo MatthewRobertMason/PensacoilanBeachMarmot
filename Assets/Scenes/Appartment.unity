@@ -997,23 +997,415 @@ MonoBehaviour:
     pointsDown: 0
     pointsLeft: 0
     isPlantPot: 1
-    tile: {fileID: 11400000, guid: a33c808f4c48a104f8ad6927a4dba3e5, type: 2}
-  - description: Thick Cross
+    tile: {fileID: 11400000, guid: a2c123d386e5ab844980ff47135ec318, type: 2}
+  - description: Plant Pot 2 (Red)
+    isFoliage: 0
+    pointsUp: 0
+    pointsRight: 0
+    pointsDown: 0
+    pointsLeft: 0
+    isPlantPot: 1
+    tile: {fileID: 11400000, guid: 49410eb135a1f2e4eb8fb37095938dbe, type: 2}
+  - description: Plant Pot 3 (Pizza)
+    isFoliage: 0
+    pointsUp: 0
+    pointsRight: 0
+    pointsDown: 0
+    pointsLeft: 0
+    isPlantPot: 1
+    tile: {fileID: 11400000, guid: acaf2e7e21aea984786a59abc8469f82, type: 2}
+  - description: Plant Pot 4 (80s)
+    isFoliage: 0
+    pointsUp: 0
+    pointsRight: 0
+    pointsDown: 0
+    pointsLeft: 0
+    isPlantPot: 1
+    tile: {fileID: 11400000, guid: 5c598e06a93b2824fb46c9957905e5bf, type: 2}
+  - description: Plant Pot 5 (Cool Rat)
+    isFoliage: 0
+    pointsUp: 0
+    pointsRight: 0
+    pointsDown: 0
+    pointsLeft: 0
+    isPlantPot: 1
+    tile: {fileID: 11400000, guid: dfe1d3abf88fd5c438190cb76265fbf1, type: 2}
+  - description: Fancy Branch - Cross Section 1
     isFoliage: 0
     pointsUp: 1
     pointsRight: 1
     pointsDown: 1
     pointsLeft: 1
     isPlantPot: 0
-    tile: {fileID: 11400000, guid: 120fb6738788ca1468de2ab896b327b0, type: 2}
-  - description: Foliage
+    tile: {fileID: 11400000, guid: aeba498d7b4cbb042b0cd4b0af0f6442, type: 2}
+  - description: Fancy Branch - Cross Section 2
+    isFoliage: 0
+    pointsUp: 1
+    pointsRight: 1
+    pointsDown: 1
+    pointsLeft: 1
+    isPlantPot: 0
+    tile: {fileID: 11400000, guid: fae9f16c2e1139c48b90274766a565b1, type: 2}
+  - description: Fancy Branch - Cross Section 3
+    isFoliage: 0
+    pointsUp: 1
+    pointsRight: 1
+    pointsDown: 1
+    pointsLeft: 1
+    isPlantPot: 0
+    tile: {fileID: 11400000, guid: 152ab3af410b54049bbb31a9d7ab3610, type: 2}
+  - description: Fancy Branch - Cross Section 4
+    isFoliage: 0
+    pointsUp: 1
+    pointsRight: 1
+    pointsDown: 1
+    pointsLeft: 1
+    isPlantPot: 0
+    tile: {fileID: 11400000, guid: 7743de271d4da8842a0e9eeeef393412, type: 2}
+  - description: Fancy Branch - Cross Section 5
+    isFoliage: 0
+    pointsUp: 1
+    pointsRight: 1
+    pointsDown: 1
+    pointsLeft: 1
+    isPlantPot: 0
+    tile: {fileID: 11400000, guid: 26fdae9a44fca9e4aa6da7be4bd1726d, type: 2}
+  - description: Fancy Branch - Cross Section 6
+    isFoliage: 0
+    pointsUp: 0
+    pointsRight: 0
+    pointsDown: 0
+    pointsLeft: 0
+    isPlantPot: 1
+    tile: {fileID: 11400000, guid: 270c30e4a153b7b4ba4a37ec7a84fbc3, type: 2}
+  - description: Fancy Branch - Top Tee 1
+    isFoliage: 0
+    pointsUp: 0
+    pointsRight: 1
+    pointsDown: 1
+    pointsLeft: 1
+    isPlantPot: 0
+    tile: {fileID: 11400000, guid: 720c0a41bb3ee1f49b41c326f405e2fa, type: 2}
+  - description: Fancy Branch - Top Tee 2
+    isFoliage: 0
+    pointsUp: 0
+    pointsRight: 1
+    pointsDown: 1
+    pointsLeft: 1
+    isPlantPot: 0
+    tile: {fileID: 11400000, guid: 25276fea0d888974d836aa70596affed, type: 2}
+  - description: Fancy Branch - Left Tee 1
+    isFoliage: 0
+    pointsUp: 1
+    pointsRight: 1
+    pointsDown: 1
+    pointsLeft: 0
+    isPlantPot: 0
+    tile: {fileID: 11400000, guid: ad8ca06313e688e45af5c9aa7aeb164d, type: 2}
+  - description: Fancy Branch - Left Tee 2
+    isFoliage: 0
+    pointsUp: 1
+    pointsRight: 1
+    pointsDown: 1
+    pointsLeft: 0
+    isPlantPot: 0
+    tile: {fileID: 11400000, guid: e814186e0d132724c9ffaaaa11225c7b, type: 2}
+  - description: Fancy Branch - Right Tee 1
+    isFoliage: 0
+    pointsUp: 1
+    pointsRight: 0
+    pointsDown: 1
+    pointsLeft: 1
+    isPlantPot: 0
+    tile: {fileID: 11400000, guid: 785225ed895989542979b6017d6ef311, type: 2}
+  - description: Fancy Branch - Right Tee 2
+    isFoliage: 0
+    pointsUp: 1
+    pointsRight: 0
+    pointsDown: 1
+    pointsLeft: 1
+    isPlantPot: 0
+    tile: {fileID: 11400000, guid: 3f3639ed0a52bcd4c9df08f47dd15d0d, type: 2}
+  - description: Fancy Branch - Bottom Tee 1
+    isFoliage: 0
+    pointsUp: 1
+    pointsRight: 1
+    pointsDown: 0
+    pointsLeft: 1
+    isPlantPot: 0
+    tile: {fileID: 11400000, guid: 021022053efe0f24ba8b2632d13f5be4, type: 2}
+  - description: Fancy Branch - Bottom Tee 2
+    isFoliage: 0
+    pointsUp: 1
+    pointsRight: 1
+    pointsDown: 0
+    pointsLeft: 1
+    isPlantPot: 0
+    tile: {fileID: 11400000, guid: de1ba19f644bfd347b706eb1bbf3b744, type: 2}
+  - description: Fancy Branch - Top Left 1
+    isFoliage: 0
+    pointsUp: 0
+    pointsRight: 1
+    pointsDown: 1
+    pointsLeft: 0
+    isPlantPot: 0
+    tile: {fileID: 11400000, guid: 8bf37e2fbf42f7f4b831d223a4999198, type: 2}
+  - description: Fancy Branch - Top Left 2
+    isFoliage: 0
+    pointsUp: 0
+    pointsRight: 1
+    pointsDown: 1
+    pointsLeft: 0
+    isPlantPot: 0
+    tile: {fileID: 11400000, guid: 1a99d504c06f14b4c9fed454521a6ac8, type: 2}
+  - description: Fancy Branch - Top Right 1
+    isFoliage: 0
+    pointsUp: 0
+    pointsRight: 0
+    pointsDown: 1
+    pointsLeft: 1
+    isPlantPot: 0
+    tile: {fileID: 11400000, guid: 528cc579f70c49341940c768c7a7d9c6, type: 2}
+  - description: Fancy Branch - Top Right 2
+    isFoliage: 0
+    pointsUp: 0
+    pointsRight: 0
+    pointsDown: 1
+    pointsLeft: 1
+    isPlantPot: 0
+    tile: {fileID: 11400000, guid: e2ef7889c54fb8448969b889fb62d4fc, type: 2}
+  - description: Fancy Branch - Bottom Left 1
+    isFoliage: 0
+    pointsUp: 1
+    pointsRight: 1
+    pointsDown: 0
+    pointsLeft: 0
+    isPlantPot: 0
+    tile: {fileID: 11400000, guid: 0cb2d71f621d87f4da8bc59f97a6cb9b, type: 2}
+  - description: Fancy Branch - Bottom Left 2
+    isFoliage: 0
+    pointsUp: 1
+    pointsRight: 1
+    pointsDown: 0
+    pointsLeft: 0
+    isPlantPot: 0
+    tile: {fileID: 11400000, guid: 2e3dc4e5085f0ce4aab07990d00d1cb5, type: 2}
+  - description: Fancy Branch - Bottom Right 1
+    isFoliage: 0
+    pointsUp: 1
+    pointsRight: 0
+    pointsDown: 0
+    pointsLeft: 1
+    isPlantPot: 0
+    tile: {fileID: 11400000, guid: b94f82d395837e640bea574451c1ba17, type: 2}
+  - description: Fancy Branch - Bottom Right 2
+    isFoliage: 0
+    pointsUp: 1
+    pointsRight: 0
+    pointsDown: 0
+    pointsLeft: 1
+    isPlantPot: 0
+    tile: {fileID: 11400000, guid: a23800bfe8db92a4c9c5cf13e224730d, type: 2}
+  - description: Fancy Branch - Horizontal 1
+    isFoliage: 0
+    pointsUp: 0
+    pointsRight: 1
+    pointsDown: 0
+    pointsLeft: 1
+    isPlantPot: 0
+    tile: {fileID: 11400000, guid: 19616b39c22e54747a37576e2fa24368, type: 2}
+  - description: Fancy Branch - Horizontal 2
+    isFoliage: 0
+    pointsUp: 0
+    pointsRight: 1
+    pointsDown: 0
+    pointsLeft: 1
+    isPlantPot: 0
+    tile: {fileID: 11400000, guid: 866b1057d16582643b63b00bc74c0c84, type: 2}
+  - description: Fancy Branch - Vertical 1
+    isFoliage: 0
+    pointsUp: 1
+    pointsRight: 0
+    pointsDown: 1
+    pointsLeft: 0
+    isPlantPot: 0
+    tile: {fileID: 11400000, guid: 982806e60db3c544991cafce461097ea, type: 2}
+  - description: Fancy Branch - Vertical 2
+    isFoliage: 0
+    pointsUp: 1
+    pointsRight: 0
+    pointsDown: 1
+    pointsLeft: 0
+    isPlantPot: 0
+    tile: {fileID: 11400000, guid: ed490c28e71c3044789b3f43c7d7261b, type: 2}
+  - description: Fancy Branch - Left 1
+    isFoliage: 0
+    pointsUp: 0
+    pointsRight: 1
+    pointsDown: 0
+    pointsLeft: 0
+    isPlantPot: 0
+    tile: {fileID: 11400000, guid: 3e0e70e7888d9b646a19377ac03544c1, type: 2}
+  - description: Fancy Branch - Left 2
+    isFoliage: 0
+    pointsUp: 0
+    pointsRight: 1
+    pointsDown: 0
+    pointsLeft: 0
+    isPlantPot: 0
+    tile: {fileID: 11400000, guid: daac5a01b6eaf8049986d9699dabc960, type: 2}
+  - description: Fancy Branch - Left 3
+    isFoliage: 0
+    pointsUp: 0
+    pointsRight: 1
+    pointsDown: 0
+    pointsLeft: 0
+    isPlantPot: 0
+    tile: {fileID: 11400000, guid: 7590d270c979f664fb7b7ca88452dfd5, type: 2}
+  - description: Fancy Branch - Left 4
+    isFoliage: 0
+    pointsUp: 0
+    pointsRight: 1
+    pointsDown: 0
+    pointsLeft: 0
+    isPlantPot: 0
+    tile: {fileID: 11400000, guid: e9390bf3064f8f14f813992b99f2ce7b, type: 2}
+  - description: Fancy Branch - Up 1
+    isFoliage: 0
+    pointsUp: 0
+    pointsRight: 0
+    pointsDown: 1
+    pointsLeft: 0
+    isPlantPot: 0
+    tile: {fileID: 11400000, guid: cf8f15b84af7eab488b857426f1140f2, type: 2}
+  - description: Fancy Branch - Up 2
+    isFoliage: 0
+    pointsUp: 0
+    pointsRight: 0
+    pointsDown: 1
+    pointsLeft: 0
+    isPlantPot: 0
+    tile: {fileID: 11400000, guid: d9364de8cdbc3e7449c807671f419152, type: 2}
+  - description: Fancy Branch - Up 3
+    isFoliage: 0
+    pointsUp: 0
+    pointsRight: 0
+    pointsDown: 1
+    pointsLeft: 0
+    isPlantPot: 0
+    tile: {fileID: 11400000, guid: 6f02bb1513fa02242affc9b58498e105, type: 2}
+  - description: Fancy Branch - Up 4
+    isFoliage: 0
+    pointsUp: 0
+    pointsRight: 0
+    pointsDown: 1
+    pointsLeft: 0
+    isPlantPot: 0
+    tile: {fileID: 11400000, guid: 40a8cfc7e19aa53428a568c60996d02a, type: 2}
+  - description: Fancy Branch - Right 1
+    isFoliage: 0
+    pointsUp: 0
+    pointsRight: 0
+    pointsDown: 0
+    pointsLeft: 1
+    isPlantPot: 0
+    tile: {fileID: 11400000, guid: 558acd5b708b1f24183eb9041181e0f7, type: 2}
+  - description: Fancy Branch - Right 2
+    isFoliage: 0
+    pointsUp: 0
+    pointsRight: 0
+    pointsDown: 0
+    pointsLeft: 1
+    isPlantPot: 0
+    tile: {fileID: 11400000, guid: b97f5175f2928824ca3a84b24c17f690, type: 2}
+  - description: Fancy Branch - Right 3
+    isFoliage: 0
+    pointsUp: 0
+    pointsRight: 0
+    pointsDown: 0
+    pointsLeft: 1
+    isPlantPot: 0
+    tile: {fileID: 11400000, guid: a9c180ae200d31d48b0441761a7b84db, type: 2}
+  - description: Fancy Branch - Right 4
+    isFoliage: 0
+    pointsUp: 0
+    pointsRight: 0
+    pointsDown: 0
+    pointsLeft: 1
+    isPlantPot: 0
+    tile: {fileID: 11400000, guid: 9dcb61e38a49b6648a54f4da2e774dd0, type: 2}
+  - description: Fancy Branch - Bottom 1
+    isFoliage: 0
+    pointsUp: 1
+    pointsRight: 0
+    pointsDown: 0
+    pointsLeft: 0
+    isPlantPot: 0
+    tile: {fileID: 11400000, guid: 4219ddca12a5af14289eacdd4bff10fa, type: 2}
+  - description: Fancy Branch - Bottom 2
+    isFoliage: 0
+    pointsUp: 1
+    pointsRight: 0
+    pointsDown: 0
+    pointsLeft: 0
+    isPlantPot: 0
+    tile: {fileID: 11400000, guid: 861addb8f9e6e7c409840946ffdc4287, type: 2}
+  - description: Fancy Branch - Bottom 3
+    isFoliage: 0
+    pointsUp: 1
+    pointsRight: 0
+    pointsDown: 0
+    pointsLeft: 0
+    isPlantPot: 0
+    tile: {fileID: 11400000, guid: 682ecf01fb9b7e341a308ebb62f2e9ad, type: 2}
+  - description: Fancy Branch - Bottom 4
+    isFoliage: 0
+    pointsUp: 1
+    pointsRight: 0
+    pointsDown: 0
+    pointsLeft: 0
+    isPlantPot: 0
+    tile: {fileID: 11400000, guid: 142ba6219a9079b449633d458ff315e8, type: 2}
+  - description: Fancy Branch - Foliage 1
     isFoliage: 1
     pointsUp: 0
     pointsRight: 0
     pointsDown: 0
     pointsLeft: 0
     isPlantPot: 0
-    tile: {fileID: 11400000, guid: 703818d6e8f503d46a91ff79ef36f038, type: 2}
+    tile: {fileID: 11400000, guid: 120afa07982a75f4097d9c539c2c45e1, type: 2}
+  - description: Fancy Branch - Foliage 2
+    isFoliage: 1
+    pointsUp: 0
+    pointsRight: 0
+    pointsDown: 0
+    pointsLeft: 0
+    isPlantPot: 0
+    tile: {fileID: 11400000, guid: 1853dd2fe7ccacb48ad09bcaa38550f3, type: 2}
+  - description: Fancy Branch - Foliage 3
+    isFoliage: 1
+    pointsUp: 0
+    pointsRight: 0
+    pointsDown: 0
+    pointsLeft: 0
+    isPlantPot: 0
+    tile: {fileID: 11400000, guid: d2fb5a7beb4236345b596d12564eface, type: 2}
+  - description: Fancy Branch - Foliage 4
+    isFoliage: 1
+    pointsUp: 0
+    pointsRight: 0
+    pointsDown: 0
+    pointsLeft: 0
+    isPlantPot: 0
+    tile: {fileID: 11400000, guid: 570d15dd921c8e2489d93276f99c8898, type: 2}
+  - description: Fancy Branch - Foliage 5
+    isFoliage: 1
+    pointsUp: 0
+    pointsRight: 0
+    pointsDown: 0
+    pointsLeft: 0
+    isPlantPot: 0
+    tile: {fileID: 11400000, guid: 9d7e4a9b7d7fc374e9f2a2476f5f9e0d, type: 2}
 --- !u!4 &968912678
 Transform:
   m_ObjectHideFlags: 0

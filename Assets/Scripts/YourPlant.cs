@@ -272,6 +272,18 @@ public class YourPlant : MonoBehaviour
         {
             potentialBranchTiles = plantTileCollection.plantTiles.Where(p =>
                 (
+                    p.pointsUp == part.pointsUp
+                    && p.pointsRight == part.pointsRight
+                    && p.pointsDown == part.pointsDown
+                    && p.pointsLeft == part.pointsLeft
+                )
+                && !p.isPlantPot
+                && !p.isFoliage
+            ).ToList();
+
+            /*
+            potentialBranchTiles = plantTileCollection.plantTiles.Where(p =>
+                (
                     p.pointsUp
                     || p.pointsRight
                     || p.pointsDown
@@ -280,7 +292,7 @@ public class YourPlant : MonoBehaviour
                 && !p.isPlantPot
                 && !p.isFoliage
             ).ToList();
-
+            */
             if (potentialBranchTiles.Count > 0)
             {
                 int rand = Random.Range(0, potentialBranchTiles.Count);
