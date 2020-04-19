@@ -40,6 +40,7 @@ public class YourPlant : MonoBehaviour
     public int day = 1;
     public int pointsToday = 0;
     public int freeTime = 1;
+    public HashSet<string> actionsToday = new HashSet<string>();
 
     private static YourPlant the_plant;
     public static YourPlant GetInstancePlant()
@@ -131,6 +132,7 @@ public class YourPlant : MonoBehaviour
     public void ApplyInteration(ObjectInteraction interaction)
     {
         int points = 0;
+        actionsToday.Add(interaction.InteractionDescription);
         points += Attention * interaction.Attention;
         points += Hunger * interaction.Hunger;
         points += Thirst * interaction.Thirst;
@@ -144,12 +146,20 @@ public class YourPlant : MonoBehaviour
 
     public int TimeOnDay(int day)
     {
-        return System.Math.Min((day-1)/2+1, 8);
+        return System.Math.Min(day, 8);
     }
 
     public void ModifyPlant(int points)
     {
-        Debug.Log(points);
+        if(points > 0) {
+            for(int ii = 0; ii < points / 2; ii++) {
+                GrowPlant();
+            }
+        } else {
+            for (int ii = 0; ii < -points / 2; ii++) {
+                ShrinkPlant();
+            }
+        }
     }
 
     public void UseTime()
@@ -160,9 +170,12 @@ public class YourPlant : MonoBehaviour
             ModifyPlant(pointsToday);
             pointsToday = 0;
             freeTime = TimeOnDay(day);
+            actionsToday.Clear();
         }
 
         GameObject.Find("DayIndicator").GetComponent<Text>().text = day.ToString();
         GameObject.Find("TimeIndicator").GetComponent<Text>().text = freeTime.ToString();
     }
+
+
 }
