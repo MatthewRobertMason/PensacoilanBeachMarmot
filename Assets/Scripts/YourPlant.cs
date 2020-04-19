@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Rendering;
@@ -16,6 +17,12 @@ public class YourPlant : MonoBehaviour
 
         public PlantTiles plantTile = null;
         public bool foliage = false;
+        
+        public bool pointsUp = false;
+        public bool pointsRight = false;
+        public bool pointsDown = false;
+        public bool pointsLeft = false;
+        public bool pointsFoliage = false;
 
         public PlantPart parent = null;
     }
@@ -102,7 +109,8 @@ public class YourPlant : MonoBehaviour
         plantTileCollection = (PlantTileCollection)FindObjectOfType<PlantTileCollection>();
 
         plantGrid = new PlantPart[plantGridSizeX, plantGridSizeY];
-        plantPot = new PlantPart() { x = 8, y = 0, plantTile = plantTileCollection.plantTiles[0] };
+        plantPot = new PlantPart() { x = 8, y = 0, plantTile = plantTileCollection.plantTiles[0], pointsUp = true };
+        
         plantGrid[plantPot.x, plantPot.y] = plantPot;
         PlantPart pp = new PlantPart();
 
@@ -126,24 +134,110 @@ public class YourPlant : MonoBehaviour
 
     public void GrowPlant()
     {
-        bool done = true;
-
-        int xx = plantPot.x;
-        int yy = plantPot.y;
-
         HashSet<PlantPart> visitedPlaces = new HashSet<PlantPart>();
-        
-        while (!done)
-        {
-            bool[] moveableDirections = { false, false, false, false, false };
-            PlantTiles pt = plantGrid[xx, yy].plantTile;
+        Queue<PlantPart> fringe = new Queue<PlantPart>();
 
-            visitedPlaces.Add(plantGrid[xx, yy]);
-            if ((pt.pointsUp) || FreeSpace(xx, yy + 1))
-                moveableDirections[0] = true;
+        List<PlantPart> potentialGrowths = new List<PlantPart>();
+        List<PlantPart> potentialFoliage = new List<PlantPart>();
+
+        PlantPart current = null;
+        fringe.Enqueue(plantPot);
+
+        while (fringe.Count > 0)
+        {
+            Debug.Log("Queue Size:");
+            current = fringe.Dequeue();
+
+            // Up
+            if (current.pointsUp)
+                fringe.Enqueue(plantGrid[current.x, current.y + 1]);
+            if (FreeSpace(current.x, current.y + 1))
+                potentialGrowths.Add(new PlantPart() { x = current.x, y = current.y + 1, pointsDown = true, parent = current });
+
+            // Right
+            if (current.pointsRight)
+                fringe.Enqueue(plantGrid[current.x + 1, current.y]);
+            if (FreeSpace(current.x + 1, current.y))
+                potentialGrowths.Add(new PlantPart() { x = current.x + 1, y = current.y, pointsLeft = true, parent = current });
+
+            // Down
+            if (current.pointsDown)
+                fringe.Enqueue(plantGrid[current.x, current.y - 1]);
+            if (FreeSpace(current.x, current.y - 1))
+                potentialGrowths.Add(new PlantPart() { x = current.x, y = current.y - 1, pointsUp = true, parent = current });
+
+            // Left
+            if (current.pointsLeft)
+                fringe.Enqueue(plantGrid[current.x - 1, current.y]);
+            if (FreeSpace(current.x - 1, current.y))
+                potentialGrowths.Add(new PlantPart() { x = current.x - 1, y = current.y, pointsRight = true, parent = current });
+
+            // Foliage
+            if (!current.pointsFoliage)
+                potentialFoliage.Add(new PlantPart() { x = current.x, y = current.y, parent = current, foliage = true });
         }
+
+        PlantPart newPart = null;
+
+        int rand = Random.Range(0, potentialGrowths.Count + potentialFoliage.Count);
+
+        if (rand >= potentialGrowths.Count)
+        {
+            rand -= potentialFoliage.Count;
+            newPart = potentialFoliage[rand];
+        }
+        else
+        {
+            newPart = potentialGrowths[rand];
+        }
+
+        if (newPart.pointsDown)
+            newPart.pointsUp = true;
+        if (newPart.pointsLeft)
+            newPart.pointsRight = true;
+        if (newPart.pointsUp)
+            newPart.pointsDown = true;
+        if (newPart.pointsRight)
+            newPart.pointsLeft = true;
+
+        UpdateTile(newPart);
+        UpdateTile(newPart.parent);
+        
+        plantGrid[newPart.x, newPart.y] = newPart;
     }
     
+    public PlantTiles UpdateTile(PlantPart part)
+    {
+        List<PlantTiles> potentialTiles = null;
+        if (part.foliage == false)
+        {
+            potentialTiles = plantTileCollection.plantTiles.Where(p =>
+                p.pointsUp == part.pointsUp
+                || p.pointsRight == part.pointsRight
+                || p.pointsDown == part.pointsDown
+                || p.pointsLeft == part.pointsLeft
+            ).ToList();
+        }
+        else
+        {
+            potentialTiles = plantTileCollection.plantTiles.Where(p =>
+                p.isFoliage == part.foliage
+            ).ToList();
+        }
+
+        if (potentialTiles.Count > 0)
+        {
+            int rand = Random.Range(0, potentialTiles.Count);
+
+            return potentialTiles[rand];
+        }
+        else
+        {
+            // Uh oh, spaghetti-o
+            return null;
+        }
+    }
+
     public void ShrinkPlant()
     {
 
@@ -151,7 +245,7 @@ public class YourPlant : MonoBehaviour
 
     private bool FreeSpace(int x, int y)
     {
-        return plantGrid[x, y] == null;
+        return (x >= 0) && (y >= 0) && (x < plantGridSizeX) && (y < plantGridSizeY) && plantGrid[x, y] == null;
     }
 
     public void ApplyInteration(ObjectInteraction interaction)
@@ -199,7 +293,7 @@ public class YourPlant : MonoBehaviour
             var splash = Instantiate(SplashPrefab, new Vector3(0, 0, 0), Quaternion.identity);
             splash.GetComponent<Splash>().SetDay(day);
         }
-
+        
         GameObject.Find("DayIndicator").GetComponent<Text>().text = day.ToString();
         GameObject.Find("TimeIndicator").GetComponent<Text>().text = freeTime.ToString();
     }
