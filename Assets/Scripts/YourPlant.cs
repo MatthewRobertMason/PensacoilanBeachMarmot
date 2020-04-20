@@ -69,6 +69,8 @@ public class YourPlant : MonoBehaviour
     public GameObject DropPrefab;
     public GameObject firstLetter;
 
+    private AudioManager audioManager;
+
     public static string NewName()
     {
         var prefix = new string[] {"The Greater", "The Lesser", "Mr.", "Mrs.", "The Regal", "The Opaque",
@@ -150,6 +152,8 @@ public class YourPlant : MonoBehaviour
         GrowPlant();
         growth = GrowPlant();
         UpdateHUD();
+
+        audioManager = FindObjectOfType<AudioManager>();
     }
 
     // Update is called once per frame
@@ -158,7 +162,11 @@ public class YourPlant : MonoBehaviour
 
     void Update()
     {
-        if(day == 0) SceneManager.LoadScene("OkEnd");
+        if (day == 0)
+        {
+            audioManager.PlayGroodEndMusic();
+            SceneManager.LoadScene("OkEnd");
+        }
 
         if (freeTime == 0) {
             InteractiveObject.popupOpen = true;
@@ -166,14 +174,20 @@ public class YourPlant : MonoBehaviour
 
                 if (pointsToday >= 2) {
                     growth = GrowPlant();
-                    if(growth >= TotalGrowth)
+                    if (growth >= TotalGrowth)
+                    {
+                        audioManager.PlayGoodEndMusic();
                         SceneManager.LoadScene("GoodEnd");
+                    }
                     UpdateHUD();
                     pointsToday -= 2;
                     growDelay = 0.6f;
                 } else if (pointsToday <= -2) {
                     if (!ShrinkPlant())
+                    {
+                        audioManager.PlayBadEndMusic();
                         SceneManager.LoadScene("BadEnd");
+                    }
                     growth--;
                     pointsToday += 2;
                     growDelay = 0.6f;
