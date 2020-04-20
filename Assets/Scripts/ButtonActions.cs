@@ -19,13 +19,13 @@ public class ButtonActions : MonoBehaviour
 
     public void StartEasy()
     {
-        audioManager.PlayGameMusic();
+        if(audioManager) audioManager.PlayGameMusic();
         SceneManager.LoadScene("Appartment");
     }
 
     public void ReturnToMenu()
     {
-        audioManager.PlayTitleMusic();
+        if(audioManager) audioManager.PlayTitleMusic();
         SceneManager.LoadScene("Start");
     }
 }
