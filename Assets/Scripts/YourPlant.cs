@@ -171,6 +171,16 @@ public class YourPlant : MonoBehaviour
         }
     }
 
+    public void GrowPlantButton()
+    {
+        GrowPlant();
+    }
+
+    public void ShrinkPlantButton()
+    {
+        ShrinkPlant();
+    }
+
     public int GrowPlant()
     {
         HashSet<PlantPart> visitedPlaces = new HashSet<PlantPart>();

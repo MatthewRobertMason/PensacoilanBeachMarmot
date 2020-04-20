@@ -1133,7 +1133,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 156585155}
-        m_MethodName: ShrinkPlant
+        m_MethodName: ShrinkPlantButton
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1454,7 +1454,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 156585155}
-        m_MethodName: GrowPlant
+        m_MethodName: GrowPlantButton
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
