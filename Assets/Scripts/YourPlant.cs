@@ -53,8 +53,6 @@ public class YourPlant : MonoBehaviour
 
     public int day;
     public int growth;
-    public const int TotalDays = 10;
-    public const int TotalGrowth = 100;
     public int pointsToday = 0;
     public int freeTime = 1;
     public HashSet<string> actionsToday = new HashSet<string>();
@@ -116,7 +114,7 @@ public class YourPlant : MonoBehaviour
     void Start()
     {
         the_plant = this;
-        day = TotalDays;
+        day = Settings.TotalDays;
         growth = 0;
         
 
@@ -174,7 +172,7 @@ public class YourPlant : MonoBehaviour
 
                 if (pointsToday >= 2) {
                     growth = GrowPlant();
-                    if (growth >= TotalGrowth)
+                    if (growth >= Settings.TotalGrowth)
                     {
                         audioManager.PlayGoodEndMusic();
                         SceneManager.LoadScene("GoodEnd");
@@ -533,7 +531,7 @@ public class YourPlant : MonoBehaviour
     {
         GameObject.Find("DayIndicator").GetComponent<Text>().text = day.ToString();
         GameObject.Find("TimeIndicator").GetComponent<Text>().text = freeTime.ToString();
-        GameObject.Find("GrowthIndicator").GetComponent<Text>().text = (100*growth/TotalGrowth).ToString() + "%";
+        GameObject.Find("GrowthIndicator").GetComponent<Text>().text = (100*growth/Settings.TotalGrowth).ToString() + "%";
     }
 
     public void StartDay()
@@ -635,7 +633,7 @@ public class YourPlant : MonoBehaviour
 
     public string GenerateStartingLetter()
     {
-        var hints = getHints(3);
+        var hints = getHints(Settings.Hints);
 
         int index = Random.Range(0, 1);
         switch(index) {
