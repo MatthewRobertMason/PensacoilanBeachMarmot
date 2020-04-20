@@ -130,13 +130,17 @@ public class YourPlant : MonoBehaviour
 
         // Generate name
         PlantName = NewName();
-        Attention = Random.Range(-3, 4);
-        Hunger = Random.Range(-3, 4);
-        Thirst = Random.Range(-3, 4);
-        Stimulation = Random.Range(-3, 4);
-        Knowledge = Random.Range(-3, 4);
-        Reassurance = Random.Range(-3, 4);
-        Peace = Random.Range(-3, 4);
+        while (true) {
+            Attention = Random.Range(-3, 4);
+            Hunger = Random.Range(-3, 4);
+            Thirst = Random.Range(-3, 4);
+            Stimulation = Random.Range(-3, 4);
+            Knowledge = Random.Range(-3, 4);
+            Reassurance = Random.Range(-3, 4);
+            Peace = Random.Range(-3, 4);
+
+            if (getHintsAt(3).Count >= 2) break;
+        }
 
         firstLetter.GetComponent<Letter>().letterText = GenerateStartingLetter();
 
@@ -600,7 +604,7 @@ public class YourPlant : MonoBehaviour
 
         if (hints.Count < target) {
             var fallback_hints = getHintsAt(1);
-            while (hints.Count < target) {
+            while (fallback_hints.Count > 0 && hints.Count < target) {
                 var index = Random.Range(0, fallback_hints.Count);
                 hints.Add(fallback_hints[index]);
                 fallback_hints.RemoveAt(index);
