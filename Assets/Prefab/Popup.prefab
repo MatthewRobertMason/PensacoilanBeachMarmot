@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 4371386863544998702}
   - component: {fileID: 2129633725248810003}
   - component: {fileID: 1236397558251964903}
+  - component: {fileID: 8229895389187642357}
   m_Layer: 0
   m_Name: Panel (1)
   m_TagString: Untagged
@@ -99,6 +100,18 @@ MonoBehaviour:
   m_ChildControlHeight: 1
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
+--- !u!225 &8229895389187642357
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2835152545699521064}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 0
+  m_IgnoreParentGroups: 0
 --- !u!1 &3615556810355730601
 GameObject:
   m_ObjectHideFlags: 0
@@ -187,6 +200,7 @@ GameObject:
   - component: {fileID: 8731424216616237415}
   - component: {fileID: 7077540164135290651}
   - component: {fileID: 9038714625656804763}
+  - component: {fileID: 891856781791090027}
   m_Layer: 0
   m_Name: Header
   m_TagString: Untagged
@@ -253,6 +267,18 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: Header Text
+--- !u!225 &891856781791090027
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3954521508446240269}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 0
+  m_IgnoreParentGroups: 0
 --- !u!1 &4122312710055742835
 GameObject:
   m_ObjectHideFlags: 0
