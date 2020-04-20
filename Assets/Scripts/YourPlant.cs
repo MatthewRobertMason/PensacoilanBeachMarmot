@@ -150,6 +150,8 @@ public class YourPlant : MonoBehaviour
         UpdateHUD();
 
         audioManager = FindObjectOfType<AudioManager>();
+
+        RandomPlantPot();
     }
 
     // Update is called once per frame
@@ -326,6 +328,16 @@ public class YourPlant : MonoBehaviour
         }
 
         return size;
+    }
+
+    public void RandomPlantPot()
+    {
+        List<PlantTiles> potentialPlantPotsTiles = plantTileCollection.plantTiles.Where(p => p.isPlantPot).ToList();
+
+        int rand = Random.Range(0, potentialPlantPotsTiles.Count);
+        plantPot.plantTile = potentialPlantPotsTiles[rand];
+
+        plantPotTileMap.SetTile(new Vector3Int(plantPot.x, plantPot.y, 0), plantPot.plantTile.tile);
     }
     
     public void UpdateTile(PlantPart part)
