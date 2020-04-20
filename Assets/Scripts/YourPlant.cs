@@ -61,6 +61,7 @@ public class YourPlant : MonoBehaviour
     }
 
     public GameObject SplashPrefab;
+    public GameObject DropPrefab;
     public GameObject firstLetter;
 
     public static string NewName()
@@ -433,7 +434,9 @@ public class YourPlant : MonoBehaviour
             if (shrinkagePart.pointsRight)
                 shrinkagePart.parent.pointsLeft = false;
 
-            // [Adam] Create falling copy here
+            // Drop a copy of the dying part that will fall off the screen
+            var drop = Instantiate(DropPrefab, new Vector3(shrinkagePart.x - plantGridSizeX/2.0f + 1, shrinkagePart.y - plantGridSizeY/2.0f + 1, 0), Quaternion.identity);
+            drop.GetComponent<SpriteRenderer>().sprite = shrinkagePart.plantTile.tile.sprite;
 
             UpdateTile(shrinkagePart);
             plantBranchTileMap.SetTile(new Vector3Int(shrinkagePart.x, shrinkagePart.y, 0), null);
@@ -448,7 +451,9 @@ public class YourPlant : MonoBehaviour
         }
         else
         {
-            // [Adam] Create falling copy here
+            // Drop a copy of the dying part that will fall off the screen
+            var drop = Instantiate(DropPrefab, new Vector3(shrinkagePart.x - plantGridSizeX / 2.0f + 1, shrinkagePart.y - plantGridSizeY / 2.0f + 1, 0), Quaternion.identity);
+            drop.GetComponent<SpriteRenderer>().sprite = shrinkagePart.foliageTile.tile.sprite;
 
             shrinkagePart.foliageTile = null;
             plantFoliageTileMap.SetTile(new Vector3Int(shrinkagePart.x, shrinkagePart.y, 0), null);
