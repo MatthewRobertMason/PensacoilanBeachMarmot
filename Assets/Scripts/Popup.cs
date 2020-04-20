@@ -44,12 +44,16 @@ public class Popup : MonoBehaviour
 
     public void SetBody(string body)
     {
-        var textObject = new GameObject();
-        var text = textObject.AddComponent<Text>();
+        //var textObject = new GameObject();
+        var text = this.fullBody.AddComponent<Text>();
+        var size_fitter = this.fullBody.AddComponent<ContentSizeFitter>();
+        size_fitter.verticalFit = ContentSizeFitter.FitMode.PreferredSize;
+        //textObject.AddComponent<Scrollbar>();
         text.text = body.Trim();
         text.font = font;
         text.color = color;
         text.fontSize = 20;
-        textObject.transform.SetParent(this.fullBody.transform);
+        text.verticalOverflow = VerticalWrapMode.Overflow;
+        //textObject.transform.SetParent(this.fullBody.transform);
     }
 }
