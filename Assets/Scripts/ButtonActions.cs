@@ -20,6 +20,27 @@ public class ButtonActions : MonoBehaviour
     public void StartEasy()
     {
         if(audioManager) audioManager.PlayGameMusic();
+        Settings.TotalDays = 10;
+        Settings.TotalGrowth = 75;
+        Settings.Hints = 3;
+        SceneManager.LoadScene("Appartment");
+    }
+
+    public void StartMedium()
+    {
+        if (audioManager) audioManager.PlayGameMusic();
+        Settings.TotalDays = 10;
+        Settings.TotalGrowth = 100;
+        Settings.Hints = 2;
+        SceneManager.LoadScene("Appartment");
+    }
+
+    public void StartHard()
+    {
+        if (audioManager) audioManager.PlayGameMusic();
+        Settings.TotalDays = 12;
+        Settings.TotalGrowth = 125;
+        Settings.Hints = 1;
         SceneManager.LoadScene("Appartment");
     }
 
