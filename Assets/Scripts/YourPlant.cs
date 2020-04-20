@@ -130,6 +130,12 @@ public class YourPlant : MonoBehaviour
         Peace = Random.Range(-3, 4);
 
         firstLetter.GetComponent<Letter>().letterText = GenerateStartingLetter();
+
+        GrowPlant();
+        GrowPlant();
+        GrowPlant();
+        GrowPlant();
+        GrowPlant();
     }
 
     // Update is called once per frame
@@ -164,7 +170,7 @@ public class YourPlant : MonoBehaviour
         }
     }
 
-    public void GrowPlant()
+    public int GrowPlant()
     {
         HashSet<PlantPart> visitedPlaces = new HashSet<PlantPart>();
         Queue<PlantPart> fringe = new Queue<PlantPart>();
@@ -177,11 +183,6 @@ public class YourPlant : MonoBehaviour
 
         while (fringe.Count > 0)
         {
-            if (fringe.Peek() == null)
-            {
-                int i = 0;
-            }
-
             current = fringe.Dequeue();
 
             // Up
@@ -195,21 +196,11 @@ public class YourPlant : MonoBehaviour
             if ((!current.plantPot) && (FreeSpace(current.x, current.y + 1)))
                 potentialGrowths.Add(new PlantPart() { x = current.x, y = current.y + 1, pointsDown = true, parent = current });
 
-            if ((potentialGrowths.Count > 0) && (potentialGrowths.Last() == null))
-            {
-                int i = 0;
-            }
-
             // Right
             if ((current.pointsRight) && (!visitedPlaces.Contains(plantGrid[current.x + 1, current.y])))
                 fringe.Enqueue(plantGrid[current.x + 1, current.y]);
             if ((!current.plantPot) && (FreeSpace(current.x + 1, current.y)))
                 potentialGrowths.Add(new PlantPart() { x = current.x + 1, y = current.y, pointsLeft = true, parent = current });
-
-            if ((potentialGrowths.Count > 0) && (potentialGrowths.Last() == null))
-            {
-                int i = 0;
-            }
 
             // Down
             if ((current.pointsDown) && (!visitedPlaces.Contains(plantGrid[current.x, current.y - 1])))
@@ -217,21 +208,11 @@ public class YourPlant : MonoBehaviour
             if ((!current.plantPot) && (FreeSpace(current.x, current.y - 1)))
                 potentialGrowths.Add(new PlantPart() { x = current.x, y = current.y - 1, pointsUp = true, parent = current });
 
-            if ((potentialGrowths.Count > 0) && (potentialGrowths.Last() == null))
-            {
-                int i = 0;
-            }
-
             // Left
             if ((current.pointsLeft) && (!visitedPlaces.Contains(plantGrid[current.x - 1, current.y])))
                 fringe.Enqueue(plantGrid[current.x - 1, current.y]);
             if ((!current.plantPot) && (FreeSpace(current.x - 1, current.y)))
                 potentialGrowths.Add(new PlantPart() { x = current.x - 1, y = current.y, pointsRight = true, parent = current });
-
-            if ((potentialGrowths.Count > 0) && (potentialGrowths.Last() == null))
-            {
-                int i = 0;
-            }
 
             // Foliage
             if ((!current.plantPot) && (!current.foliage))
@@ -273,7 +254,6 @@ public class YourPlant : MonoBehaviour
         }
 
         UpdateTile(newPart);
-        //if (!newPart.foliage)
             plantBranchTileMap.SetTile(new Vector3Int(newPart.x, newPart.y, 0), newPart.plantTile.tile);
         if (newPart.foliageTile != null)
             plantFoliageTileMap.SetTile(new Vector3Int(newPart.x, newPart.y, 0), newPart.foliageTile.tile);
@@ -281,13 +261,30 @@ public class YourPlant : MonoBehaviour
         if (!newPart.parent.plantPot)
         {
             UpdateTile(newPart.parent);
-            //if (!newPart.parent.foliage)
                 plantBranchTileMap.SetTile(new Vector3Int(newPart.parent.x, newPart.parent.y, 0), newPart.parent.plantTile.tile);
             if (newPart.parent.foliageTile != null)
                 plantFoliageTileMap.SetTile(new Vector3Int(newPart.parent.x, newPart.parent.y, 0), newPart.parent.foliageTile.tile);
         }
         
         plantGrid[newPart.x, newPart.y] = newPart;
+
+        int size = 0;
+
+        for (int xx = 0; xx < plantGridSizeX; xx++)
+        {
+            for (int yy = 0; yy < plantGridSizeY; yy++)
+            {
+                if (plantGrid[xx,yy] != null)
+                {
+                    if (plantGrid[xx, yy].foliage)
+                        size += 2;
+                    else
+                        size += 1;
+                }
+            }
+        }
+
+        return size;
     }
     
     public void UpdateTile(PlantPart part)
@@ -295,36 +292,22 @@ public class YourPlant : MonoBehaviour
         List<PlantTiles> potentialBranchTiles = null;
         List<PlantTiles> potentialFoliageTiles = null;
 
-        if (part.foliage == false)
-        {
-            potentialBranchTiles = plantTileCollection.plantTiles.Where(p =>
-                (
-                    p.pointsUp == part.pointsUp
-                    && p.pointsRight == part.pointsRight
-                    && p.pointsDown == part.pointsDown
-                    && p.pointsLeft == part.pointsLeft
-                )
-                && !p.isPlantPot
-                && !p.isFoliage
-            ).ToList();
+        potentialBranchTiles = plantTileCollection.plantTiles.Where(p =>
+            (
+                p.pointsUp == part.pointsUp
+                && p.pointsRight == part.pointsRight
+                && p.pointsDown == part.pointsDown
+                && p.pointsLeft == part.pointsLeft
+            )
+            && !p.isPlantPot
+            && !p.isFoliage
+        ).ToList();
 
-            /*
-            potentialBranchTiles = plantTileCollection.plantTiles.Where(p =>
-                (
-                    p.pointsUp
-                    || p.pointsRight
-                    || p.pointsDown
-                    || p.pointsLeft
-                )
-                && !p.isPlantPot
-                && !p.isFoliage
-            ).ToList();
-            */
-            if (potentialBranchTiles.Count > 0)
-            {
-                int rand = Random.Range(0, potentialBranchTiles.Count);
-                part.plantTile = potentialBranchTiles[rand];
-            }
+           
+        if (potentialBranchTiles.Count > 0)
+        {
+            int rand = Random.Range(0, potentialBranchTiles.Count);
+            part.plantTile = potentialBranchTiles[rand];
         }
 
         if ((part.foliageTile == null) && (part.foliage))
@@ -341,9 +324,129 @@ public class YourPlant : MonoBehaviour
         }
     }
 
-    public void ShrinkPlant()
+    public bool ShrinkPlant()
     {
+        HashSet<PlantPart> visitedPlaces = new HashSet<PlantPart>();
+        Queue<PlantPart> fringe = new Queue<PlantPart>();
 
+        List<PlantPart> potentialShrinks = new List<PlantPart>();
+        List<PlantPart> potentialFoliage = new List<PlantPart>();
+
+        PlantPart current = null;
+        fringe.Enqueue(plantPot);
+
+        while (fringe.Count > 0)
+        {
+            current = fringe.Dequeue();
+
+            if (
+                (!current.plantPot) && (!current.foliage) &&
+                (
+                    ((current.pointsUp) && (!current.pointsRight) && (!current.pointsDown) && (!current.pointsLeft)) ||
+                    ((!current.pointsUp) && (current.pointsRight) && (!current.pointsDown) && (!current.pointsLeft)) ||
+                    ((!current.pointsUp) && (!current.pointsRight) && (current.pointsDown) && (!current.pointsLeft)) ||
+                    ((!current.pointsUp) && (!current.pointsRight) && (!current.pointsDown) && (current.pointsLeft))
+                )
+               )
+            {
+                potentialShrinks.Add(plantGrid[current.x, current.y]);
+            }
+            else
+            {
+                if ((current.pointsUp) && ((current.plantPot) || !((current.x == current.parent.x) && (current.y + 1 == current.parent.y))))
+                {
+                    if ((current.y >= 0) && (current.y < plantGridSizeY) && (plantGrid[current.x, current.y + 1] != null))
+                        fringe.Enqueue(plantGrid[current.x, current.y + 1]);
+                }
+
+                if ((current.pointsRight) && ((current.plantPot) || !((current.x + 1 == current.parent.x) && (current.y == current.parent.y))))
+                {
+                    if ((current.x >= 0) && (current.x < plantGridSizeX) && (plantGrid[current.x + 1, current.y] != null))
+                        fringe.Enqueue(plantGrid[current.x + 1, current.y]);
+                }
+
+                if ((current.pointsDown) && ((current.plantPot) || !((current.x == current.parent.x) && (current.y - 1 == current.parent.y))))
+                {
+                    if ((current.y >= 0) && (current.y < plantGridSizeY) && (plantGrid[current.x, current.y - 1] != null))
+                        fringe.Enqueue(plantGrid[current.x, current.y - 1]);
+                }
+
+                if ((current.pointsLeft) && ((current.plantPot) || !((current.x - 1 == current.parent.x) && (current.y == current.parent.y))))
+                {
+                    if ((current.x >= 0) && (current.x < plantGridSizeX) && (plantGrid[current.x - 1, current.y] != null))
+                        fringe.Enqueue(plantGrid[current.x - 1, current.y]);
+                }
+            }
+
+            // Foliage
+            if (current.foliage)
+            {
+                potentialFoliage.Add(current);
+            }
+
+            visitedPlaces.Add(current);
+        }
+
+        if (potentialShrinks.Count == 0 && potentialFoliage.Count == 0)
+        {
+            return false;
+        }
+
+        PlantPart shrinkagePart = null;
+
+        int rand = Random.Range(0, potentialShrinks.Count + (potentialFoliage.Count * 2));
+        bool foliageWork = false;
+
+        if (rand >= potentialShrinks.Count)
+        {
+            rand -= potentialShrinks.Count;
+            rand >>= 1;
+
+            shrinkagePart = potentialFoliage[rand];
+            shrinkagePart.foliage = false;
+            shrinkagePart.pointsFoliage = false;
+            foliageWork = true;
+        }
+        else
+        {
+            shrinkagePart = potentialShrinks[rand];
+        }
+
+        if (!foliageWork)
+        {
+            if ((shrinkagePart.pointsDown) && (!shrinkagePart.parent.plantPot))
+                shrinkagePart.parent.pointsUp = false;
+            if (shrinkagePart.pointsLeft)
+                shrinkagePart.parent.pointsRight = false;
+            if (shrinkagePart.pointsUp)
+                shrinkagePart.parent.pointsDown = false;
+            if (shrinkagePart.pointsRight)
+                shrinkagePart.parent.pointsLeft = false;
+
+            // [Adam] Create falling copy here
+
+            UpdateTile(shrinkagePart);
+            plantBranchTileMap.SetTile(new Vector3Int(shrinkagePart.x, shrinkagePart.y, 0), null);
+            
+            if (!shrinkagePart.parent.plantPot)
+            {
+                UpdateTile(shrinkagePart.parent);
+                plantBranchTileMap.SetTile(new Vector3Int(shrinkagePart.parent.x, shrinkagePart.parent.y, 0), shrinkagePart.parent.plantTile.tile);
+            }
+
+            plantGrid[shrinkagePart.x, shrinkagePart.y] = null;
+        }
+        else
+        {
+            // [Adam] Create falling copy here
+
+            shrinkagePart.foliageTile = null;
+            plantFoliageTileMap.SetTile(new Vector3Int(shrinkagePart.x, shrinkagePart.y, 0), null);
+
+            plantGrid[shrinkagePart.x, shrinkagePart.y] = shrinkagePart;
+        }
+
+        return true;
     }
 
     private bool FreeSpace(int x, int y)
