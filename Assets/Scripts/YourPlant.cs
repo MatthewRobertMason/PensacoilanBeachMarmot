@@ -4,6 +4,7 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Rendering;
+using UnityEngine.SceneManagement;
 
 public class YourPlant : MonoBehaviour
 {
@@ -145,16 +146,20 @@ public class YourPlant : MonoBehaviour
 
     void Update()
     {
+        if(day == 10) SceneManager.LoadScene("OkEnd");
+
         if (freeTime == 0) {
             InteractiveObject.popupOpen = true;
             if (growDelay <= 0) {
 
                 if (pointsToday >= 2) {
-                    GrowPlant();
+                    if(GrowPlant() >= 100)
+                        SceneManager.LoadScene("GoodEnd");
                     pointsToday -= 2;
                     growDelay = 0.6f;
                 } else if (pointsToday <= -2) {
-                    ShrinkPlant();
+                    if (!ShrinkPlant())
+                        SceneManager.LoadScene("BadEnd");
                     pointsToday += 2;
                     growDelay = 0.6f;
                 } else {
