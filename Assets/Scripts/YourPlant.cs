@@ -6,6 +6,7 @@ using UnityEngine.UI;
 using UnityEngine.Rendering;
 using UnityEngine.SceneManagement;
 
+
 public class YourPlant : MonoBehaviour
 {
     public string PlantName;
@@ -50,7 +51,10 @@ public class YourPlant : MonoBehaviour
     public int Reassurance;
     public int Peace;
 
-    public int day = 1;
+    public int day;
+    public int growth;
+    public const int TotalDays = 10;
+    public const int TotalGrowth = 100;
     public int pointsToday = 0;
     public int freeTime = 1;
     public HashSet<string> actionsToday = new HashSet<string>();
@@ -110,6 +114,9 @@ public class YourPlant : MonoBehaviour
     void Start()
     {
         the_plant = this;
+        day = TotalDays;
+        growth = 0;
+        
 
         plantTileCollection = (PlantTileCollection)FindObjectOfType<PlantTileCollection>();
 
@@ -137,7 +144,8 @@ public class YourPlant : MonoBehaviour
         GrowPlant();
         GrowPlant();
         GrowPlant();
-        GrowPlant();
+        growth = GrowPlant();
+        UpdateHUD();
     }
 
     // Update is called once per frame
@@ -146,20 +154,23 @@ public class YourPlant : MonoBehaviour
 
     void Update()
     {
-        if(day == 10) SceneManager.LoadScene("OkEnd");
+        if(day == 0) SceneManager.LoadScene("OkEnd");
 
         if (freeTime == 0) {
             InteractiveObject.popupOpen = true;
             if (growDelay <= 0) {
 
                 if (pointsToday >= 2) {
-                    if(GrowPlant() >= 100)
+                    growth = GrowPlant();
+                    if(growth >= TotalGrowth)
                         SceneManager.LoadScene("GoodEnd");
+                    UpdateHUD();
                     pointsToday -= 2;
                     growDelay = 0.6f;
                 } else if (pointsToday <= -2) {
                     if (!ShrinkPlant())
                         SceneManager.LoadScene("BadEnd");
+                    growth--;
                     pointsToday += 2;
                     growDelay = 0.6f;
                 } else {
@@ -491,27 +502,32 @@ public class YourPlant : MonoBehaviour
 
     public int TimeOnDay(int day)
     {
-        return System.Math.Min(day, 8);
+        return System.Math.Min(11 - day, 8);
     }
 
     public void UseTime()
     {
-        freeTime -= 1;        
+        freeTime -= 1;
+        UpdateHUD();
+    }
+
+    public void UpdateHUD()
+    {
         GameObject.Find("DayIndicator").GetComponent<Text>().text = day.ToString();
         GameObject.Find("TimeIndicator").GetComponent<Text>().text = freeTime.ToString();
+        GameObject.Find("GrowthIndicator").GetComponent<Text>().text = (100*growth/TotalGrowth).ToString() + "%";
     }
 
     public void StartDay()
     {
-        day += 1;
+        day -= 1;
         freeTime = TimeOnDay(day);
         actionsToday.Clear();
         var splash = Instantiate(SplashPrefab, new Vector3(0, 0, 0), Quaternion.identity);
         splash.GetComponent<Splash>().SetDay(day);
         InteractiveObject.popupOpen = false;
         pointsToday = 0;
-        GameObject.Find("DayIndicator").GetComponent<Text>().text = day.ToString();
-        GameObject.Find("TimeIndicator").GetComponent<Text>().text = freeTime.ToString();
+        UpdateHUD();
     }
 
     public string hintAttention()
