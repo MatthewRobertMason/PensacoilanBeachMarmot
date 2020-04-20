@@ -18,12 +18,14 @@ public class AudioManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if (FindObjectsOfType<AudioManager>().Length > 0)
+        if (FindObjectsOfType<AudioManager>().Length > 1)
         {
             // One is the instance that there can only be
-            Destroy(this);
+            Destroy(this.gameObject);
+            return;
         }
 
+        DontDestroyOnLoad(this);
         DontDestroyOnLoad(this.gameObject);
         audioSource = this.GetComponent<AudioSource>();
 
