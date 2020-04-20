@@ -722,16 +722,20 @@ Love Mom <3
                     return string.Format(@"
 To whom it may concern,
 
-Greetings and salutations! We at the Consolidated Greenery Conglomerate welcome you to the adventure of houseplant ownership. It’s a difficult path to walk, and we are both impressed and humbled that you have chosen to walk it with us. In accordance with your form submission (online), we have sent you one {0}, included in this shipment. 
+Greetings and salutations! We at the Consolidated Greenery Conglomerate welcome you to the adventure of houseplant ownership. It’s a difficult path to walk, and we are both impressed and humbled that you have chosen to walk it with us. In accordance with your form submission (online), we have sent you [one] {0}, included in this shipment. 
     {1}
 
-Like many first-time plant owners, you may find yourself asking, “But how do I care for my [plant name here]?” We’re pleased to report that it couldn’t be simpler! Here are a few quick tips to get you started.
+Like many first-time plant owners, you may find yourself asking, “But how do I care for [my] {0}?” We’re pleased to report that it couldn’t be simpler! Here are a few quick tips to get you started.
 {2}
 
 And that about covers it! We hope your plant enjoys its new life with you, and vice versa. Thanks for joining our houseplant-owning family, and we hope to hear from you again soon!
 
 All the best,
 {3}
+
+Consolidated Greenery Conglomerate
+P.O Box 204863
+Nooseneck, Rhode Island, U.S.A
 ", name, fakePlantTrait, hintString, fromPerson);
                 }
         }
