@@ -667,7 +667,8 @@ public class YourPlant : MonoBehaviour
 Hello Dear!
 
 I thought you might be lonely in the big city so I sent you a potted plant.
-Its {0}! Thats my favorite kind.
+Its {0}! Thats my favorite kind. I'm going to visit in 10 days, I look 
+forward to seeing how much it's grown in that time.
 
 Love Mom <3
 
