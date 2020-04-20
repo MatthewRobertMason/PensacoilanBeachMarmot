@@ -45,10 +45,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   titleMusic: {fileID: 8300000, guid: f359a80a52b58ac4696b190b5093ff7e, type: 3}
-  gameMusic: {fileID: 8300000, guid: 4908cb314b446f74390e5380a7de872c, type: 3}
+  gameMusic: {fileID: 8300000, guid: 420a076b187c7cf4cb6eaed0897d1e30, type: 3}
   goodEndMusic: {fileID: 8300000, guid: 5b718f726178eba478913a22b5b08fce, type: 3}
   groodEndMusic: {fileID: 8300000, guid: 36afa2e1afa8a3840a9b0dd36e6e27f4, type: 3}
-  badEndMusic: {fileID: 0}
+  badEndMusic: {fileID: 8300000, guid: 4908cb314b446f74390e5380a7de872c, type: 3}
   volumeSlider: {fileID: 0}
 --- !u!82 &586426880993099622
 AudioSource:
@@ -60,7 +60,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: f359a80a52b58ac4696b190b5093ff7e, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 0.341
   m_Pitch: 1
