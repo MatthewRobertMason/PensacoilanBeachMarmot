@@ -13,7 +13,19 @@ public class AudioManager : MonoBehaviour
 
     public Slider volumeSlider;
 
-    private AudioSource audioSource;
+    private AudioSource _audioSource;
+
+    private AudioSource audioSource
+    {
+        get
+        {
+            if (_audioSource == null)
+            {
+                _audioSource = this.GetComponent<AudioSource>();
+            }
+            return _audioSource;
+        }
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -27,7 +39,7 @@ public class AudioManager : MonoBehaviour
 
         DontDestroyOnLoad(this);
         DontDestroyOnLoad(this.gameObject);
-        audioSource = this.GetComponent<AudioSource>();
+        //audioSource = this.GetComponent<AudioSource>();
 
         if (audioSource.clip == null)
             audioSource.clip = titleMusic;
