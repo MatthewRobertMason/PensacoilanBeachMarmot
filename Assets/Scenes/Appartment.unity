@@ -251,6 +251,8 @@ MonoBehaviour:
   freeTime: 1
   SplashPrefab: {fileID: 5917843321404647455, guid: 6a0c00422c1c574498fe4ccaee9e60c6,
     type: 3}
+  DropPrefab: {fileID: 1982085287534105391, guid: 92ad0e8ab80eca6458f2b936cceeefee,
+    type: 3}
   firstLetter: {fileID: 1923992293}
 --- !u!4 &156585156
 Transform:

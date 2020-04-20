@@ -61,6 +61,7 @@ public class YourPlant : MonoBehaviour
     }
 
     public GameObject SplashPrefab;
+    public GameObject DropPrefab;
     public GameObject firstLetter;
 
     public static string NewName()
@@ -424,6 +425,8 @@ public class YourPlant : MonoBehaviour
                 shrinkagePart.parent.pointsLeft = false;
 
             // [Adam] Create falling copy here
+            var drop = Instantiate(DropPrefab, new Vector3(shrinkagePart.x, shrinkagePart.y, 0), Quaternion.identity);
+            drop.GetComponent<SpriteRenderer>().sprite = shrinkagePart.plantTile.tile.sprite;
 
             UpdateTile(shrinkagePart);
             plantBranchTileMap.SetTile(new Vector3Int(shrinkagePart.x, shrinkagePart.y, 0), null);
