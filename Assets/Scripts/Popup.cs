@@ -7,6 +7,7 @@ public class Popup : MonoBehaviour
 {
     public GameObject Header;
     public GameObject body;
+    public GameObject fullBody;
     public GameObject optionPrefab;
     public GameObject exitText;
     public Color color;
@@ -45,10 +46,10 @@ public class Popup : MonoBehaviour
     {
         var textObject = new GameObject();
         var text = textObject.AddComponent<Text>();
-        text.text = body;
+        text.text = body.Trim();
         text.font = font;
         text.color = color;
         text.fontSize = 20;
-        textObject.transform.SetParent(this.body.transform);
+        textObject.transform.SetParent(this.fullBody.transform);
     }
 }
