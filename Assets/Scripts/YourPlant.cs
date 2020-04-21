@@ -647,23 +647,27 @@ public class YourPlant : MonoBehaviour
     {
         var hints = getHints(Settings.Hints);
 
-        int index = Random.Range(0, 1);
-        switch(index) {
+        int index = Random.Range(0, 2);
+        switch (index)
+        {
             default:
-            case 0: {
+            case 0:
+                {
 
-                string hintString = "PS here is a clipping from the package to help you get started:\n";
-                foreach(var hint in hints) {
-                    hintString += "- " + hint + "\n";
-                }
+                    string hintString = "PS here is a clipping from the package to help you get started:\n";
+                    foreach (var hint in hints)
+                    {
+                        hintString += "- " + hint + "\n";
+                    }
 
-                string name = this.PlantName;
-                if (!name.StartsWith("The")) {
-                    if(name.StartsWith("A") || name.StartsWith("E") || name.StartsWith("I") || name.StartsWith("O") || name.StartsWith("Y")) name = "an " + name;
-                    else name = "a " + name;
-                }
+                    string name = this.PlantName;
+                    if (!name.StartsWith("The"))
+                    {
+                        if (name.StartsWith("A") || name.StartsWith("E") || name.StartsWith("I") || name.StartsWith("O") || name.StartsWith("Y")) name = "an " + name;
+                        else name = "a " + name;
+                    }
 
-                return string.Format(@"
+                    return string.Format(@"
 Hello Dear!
 
 I thought you might be lonely in the big city so I sent you a potted plant.
@@ -673,7 +677,67 @@ forward to seeing how much it's grown in that time.
 Love Mom <3
 
 {1}", name, hintString);
-            }
-        } 
+                }
+
+            case 1:
+                {
+                    string fakePlantTrait = "";
+                    string hintString = "";
+                    string fromPerson = "";
+
+                    switch (Random.Range(0, 7))
+                    {
+                        case 0: fakePlantTrait = "Modest and pensive, it’s a fine plant for academics, although rock stars, surfers, and beachcombers will find something to love too."; break;
+                        case 1: fakePlantTrait = "An excellent beginner plant, its growth patterns and quiet dignity have been scientifically proven to delight both children and certain species of beetle larvae."; break;
+                        case 2: fakePlantTrait = "An uncommon choice among first-time owners, it has a daring streak and can be difficult to rein in, even for those with experience and advanced training in animal handling."; break;
+                        case 3: fakePlantTrait = "With its occasionally bright colours and sometimes fruity smells, this plant has (mostly) everything it takes to be the life of the party!"; break;
+                        case 4: fakePlantTrait = "With its demanding care schedule, fickle desires, and unpleasant odours, it’s an excellent choice for advanced plant-handlers looking for a challenge, or for couples who aren’t ready to conceive."; break;
+                        case 5: fakePlantTrait = "With nectar that contains an all-natural analogue of dextromethorphan, this plant is ready to hit the club, and you will be too!"; break;
+                        case 6: fakePlantTrait = "A range of sweet smells and a taste that can’t be beat means that this plant will attract almost as many aphids as it will compliments!"; break;
+                    }
+
+                    switch (Random.Range(0, 7))
+                    {
+                        case 0: fromPerson = "Carlton Chipchip, Accounts Payable"; break;
+                        case 1: fromPerson = "Brenda Gunslinger, CEO"; break;
+                        case 2: fromPerson = "Harlan Cheapskate, Sales"; break;
+                        case 3: fromPerson = "Quintin Godsmack, Reception"; break;
+                        case 4: fromPerson = "Alan Hedgehog, Data Entry"; break;
+                        case 5: fromPerson = "Teri Gumball, Marketing"; break;
+                        case 6: fromPerson = "Vivian Caviar, Shipping"; break;
+                    }
+
+                    foreach (var hint in hints)
+                    {
+                        hintString += "- " + hint + "\n";
+                    }
+
+                    string name = this.PlantName;
+                    if (!name.StartsWith("The"))
+                    {
+                        if (name.StartsWith("A") || name.StartsWith("E") || name.StartsWith("I") || name.StartsWith("O") || name.StartsWith("Y")) name = "an " + name;
+                        else name = "a " + name;
+                    }
+
+                    return string.Format(@"
+To whom it may concern,
+
+Greetings and salutations! We at the Consolidated Greenery Conglomerate welcome you to the adventure of houseplant ownership. It’s a difficult path to walk, and we are both impressed and humbled that you have chosen to walk it with us. In accordance with your form submission (online), we have sent you [one] {0}, included in this shipment. 
+    {1}
+
+Like many first-time plant owners, you may find yourself asking, “But how do I care for [my] {0}?” We’re pleased to report that it couldn’t be simpler! Here are a few quick tips to get you started.
+{2}
+
+And that about covers it! We hope your plant enjoys its new life with you, and vice versa. Thanks for joining our houseplant-owning family, and we hope to hear from you again soon!
+
+All the best,
+{3}
+
+Consolidated Greenery Conglomerate
+P.O Box 204863
+Nooseneck, Rhode Island, U.S.A
+", name, fakePlantTrait, hintString, fromPerson);
+                }
+        }
     }
 }
