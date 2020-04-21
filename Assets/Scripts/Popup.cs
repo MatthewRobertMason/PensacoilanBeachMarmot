@@ -8,6 +8,7 @@ public class Popup : MonoBehaviour
     public GameObject Header;
     public GameObject body;
     public GameObject fullBody;
+    public GameObject fullBodyContainer;
     public GameObject optionPrefab;
     public GameObject exitText;
     public Color color;
@@ -44,6 +45,7 @@ public class Popup : MonoBehaviour
 
     public void SetBody(string body)
     {
+        fullBodyContainer.SetActive(true);
         //var textObject = new GameObject();
         var text = this.fullBody.AddComponent<Text>();
         var size_fitter = this.fullBody.AddComponent<ContentSizeFitter>();
